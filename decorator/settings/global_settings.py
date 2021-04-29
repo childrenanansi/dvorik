@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'cinv)xau5n)me90t^6_5_mb1l+v#=8@^5by7r8*gzn1w-*eo08'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'decorator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'decorator',
+        'NAME': 'dvordpk',
         'USER': 'pweb',
         'PASSWORD': 'pweb',
         'HOST': '127.0.0.1',
