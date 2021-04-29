@@ -1,0 +1,171 @@
+{% extends '__base2.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 breadcrumbs">
+        <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/catalog/" title="Каталог" itemprop="item">
+                    <span itemprop="name">Каталог</span>
+                    <meta itemprop="position" content="0">
+                </a> <span>/</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/catalog/{{category.alias}}/" title="{{category.name}}" itemprop="item">
+                    <span itemprop="name">{{category.name}}</span>
+                    <meta itemprop="position" content="1">
+                </a>
+            </li>
+            {% if pod_category %}
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span>/</span>
+                    <span itemprop="name">{{pod_category.name}}</span>
+                    <meta itemprop="position" content="2">
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-lg-3 col-sm-12 col-12 left-columns-items">
+        <div class="parent-category">
+            <a href="/catalog/{{category.alias}}/">
+                <div class="img-f-left"><img src="{{category.ico.url}}" alt="{{category.name}}"></div>
+                <div class="img-s-left">{{category.name}}</div>
+            </a>
+        </div>
+      <ul>
+      {% for m in left_menu %}
+        <li><a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div class="col-lg-9 col-sm-12 col-12 right-columns-items">
+      <div class="container-fluid">
+        <div class="row slider-category">
+              <div class="col-12">
+                  {% if pod_category %}
+                        {% if pod_category.img_front %}
+                            <img src="{{pod_category.img_front.url}}" alt="{{pod_category.name}}" />
+                        {% else %}
+                            <div class="white-block"> </div>
+                        {% endif %}
+                   {% else %}
+                        {% if category.img_front %}
+                            <img src="{{category.img_front.url}}" alt="{{category.name}}" />
+                        {% else %}
+                            <div class="white-block"> </div>
+                        {% endif %}
+                   {% endif %}
+              </div>
+                    {% if pod_category %}
+                        <h1 class="title-category">{{pod_category.name}}</h1>
+                   {% else %}
+                        <h1 class="title-category">{{category.name}}</h1>
+                   {% endif %}
+          </div>
+        <div class="row box">
+           {% for item in pag%}
+              <div class="col-lg-4 col-sm-6 col-12">
+                  <div class="items-blocks">
+                    <div class="img-item-block">
+                        <a href="/product/{{item.alias}}/" itemprop="url" >
+                            <img src="{{item.img_front.url}}" alt="{{item.name}}" />
+                        </a>
+                      {% if item.label_new %}
+                        <div class="label-new">Новинка</div>
+                      {% endif %}
+                      {% if item.label_hit %}
+                        <div class="label-hit">Хит</div>
+                      {% endif %}
+                    </div>
+                    <div class="title-item-block">
+                        <a href="/product/{{item.alias}}/">{{item.name}}</a>
+                        {% if item.size %}
+                            <p>Размер: {{item.size}} мм</p>
+                        {% endif %}
+                        {% if item.dlina %}
+                            <p>Длина: {{item.dlina}}</p>
+                        {% endif %}
+                        {% if item.obrob %}
+                            <p>Обработка: {{item.obrob}}</p>
+                        {% endif %}
+                    </div>
+                    <div class="price-item-block">
+                        <p>
+                            {% if item.price %} {{item.price|floatformat:'-3'}} {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %} {% endif %}
+                        </p>
+                        <p>
+                            {% if item.price_kv %} {{item.price_kv|floatformat:'-3'}} р/кв.м {% endif %}
+                        </p>
+                    </div>
+                    <div class="item-block-a"><a href="/product/{{item.alias}}/">Подробнее</a></div>
+                  </div>
+              </div>
+              {% endfor %}
+        </div>
+        <div class="row filter-bottom">
+          <div class="col-lg-3 col-sm-6 col-12">
+              <select class="form-control">
+                <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По цене &#8593;</option>
+                <option value="desc" {% if 'desc' ==  order%}selected{% endif %}>По цене &#8595;</option>
+              </select>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-12">
+                Отображение {{first_pages}}–{{pages}} из {{ items.count }}
+              </div>
+              <div class="col-lg-6 col-sm-6 col-12 pagination">
+                  <div class="step-links">
+                      {% if pag.has_other_pages %}
+                      <ul class="pagination">
+                      {% if pag.has_previous %}
+                        <li class="arrow"><a href="{{url_s}}&page={{ pag.previous_page_number }}">&#8592;</a></li>
+                      {% endif %}
+                      {% if pag.number > 1 %}
+                          <li><a href="{{url_s}}&page=1">1</a></li>
+                          {% if doted_front %}
+                            <li>..</li>
+                          {% endif %}
+                      {% endif %}
+                      <li class="active"><span>{{pag.number}}<span class="sr-only">(current)</span></span></li>
+                      {% if pag.has_next %}
+                          {% if doted_end %}
+                            <li>..</li>
+                          {% endif %}
+                          {% if pag.number != pag.paginator.num_pages %}
+                               <li><a href="{{url_s}}&page={{pag.paginator.num_pages}}">{{pag.paginator.num_pages}}</a></li>
+                          {% endif %}
+                          <li class="arrow"><a href="{{url_s}}&page={{ pag.next_page_number }}">&#8594;</a></li>
+                      {% endif %}
+                      </ul>
+                      {% endif %}
+                  </div>
+              </div>
+        </div>
+        <div class="row text-category">
+            <div class="col-12">
+                <article>
+                {% if pod_category %}
+                    {% if pod_category.content %}
+                        {{pod_category.content|safe}}
+                    {% else %}
+                        {{templated_content}}
+                    {% endif %}
+                {% else %}
+                    {% if category.content %}
+                        {{category.content|safe}}
+                    {% else %}
+                        {{templated_content}}
+                    {% endif %}
+                {% endif %}
+                </article>
+            </div>
+        </div>
+      </div>
+  </div>
+   </div>
+</div>
+<form id="updatePosts" method="GET"  style="display: none">
+    <input type="text" name="sort" class="sort">
+</form>
+{% endblock %}

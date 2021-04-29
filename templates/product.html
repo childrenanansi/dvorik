@@ -1,0 +1,195 @@
+{% extends '__base2.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 breadcrumbs">
+      <a href="/catalog/">Каталог</a> /
+      <a href="/catalog/{{item.cat_item.alias}}/ ">{{item.cat_item.name}}</a>
+      {% if item.pod_cat_item %}
+        / <a href="/catalog/{{item.cat_item.alias}}/{{item.pod_cat_item.alias}}/ ">{{item.pod_cat_item.name}}</a>
+      {% endif %}
+      / <a href="/product/{{item.alias}}/">{{item.name}}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-sm-12 col-12 left-columns-items">
+        <div class="parent-category">
+            <a href="/catalog/{{item.cat_item.alias}}/">
+                <div class="img-f-left"><img src="{{item.cat_item.ico.url}}" alt="{{item.cat_item.name}}"></div>
+                <div class="img-s-left">{{item.cat_item.name}}</div>
+            </a>
+        </div>
+        <ul>
+      {% for m in left_menu %}
+        <li>
+            {% if m.id == item.pod_cat_item.id %}
+                <b><a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a></b>
+            {% else %}
+                <a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a>
+            {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+        {% if cross %}
+        <div class="cross-in">
+            <div class="title-cross">
+                С ЭТИМ ТОВАРОМ ПОКУПАЮТ:
+                <div class="green-line"></div>
+            </div>
+            {% for item in cross.cross.all%}
+                <div class="cross-item">
+                    <a href="/product/{{item.alias}}/">
+                        <div class="left-cross">
+                            <p class="title-cross-p">{{item.name}}</p>
+                            <span class="price-cross">{{item.price|floatformat:'-3'}} {% if item.price_for_wt %} РУБ/шт {% else %} РУБ/м.п.{% endif %}</span>
+                        </div>
+                        <div class="right-cross">
+                            <img src="{{item.img_front.url}}" alt="{{item.name}}" />
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-lg-9 col-sm-12 col-12 right-columns-items" itemscope itemtype="http://schema.org/Product">
+      <div class="container">
+        <div class="row container-on-product">
+          <div class="col-lg-6 col-sm-6 col-12 product-gallery">
+              <div class="product-loopa">
+                  <a href="" class="loopa-product" data-fancybox="gallery"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+              </div>
+            <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+            {% for slider in sliders %}
+                <li data-thumb="{{slider.img.url}}">
+                    <a href="{{slider.img.url}}" data-fancybox="gallery">
+                        <img src="{{slider.img.url}}" itemprop="image" alt="{{slider.name}}" />
+                    </a>
+                     </li>
+            {% endfor %}
+            </ul>
+          </div>
+            <div class="col-lg-1 col-sm-1"></div>
+          <div class="col-lg-5 col-sm-5 col-12">
+            {% if data.seo_h1 %}
+              <h1 class="title-product-in" itemprop="name">{{data.seo_h1}}</h1>
+            {% else %}
+              <h1 class="title-product-in" itemprop="name">{{data.name}}</h1>
+            {% endif %}
+              {% if item.price %}
+                  <p class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                      <meta itemprop="priceCurrency" content="RUB" />
+                      <span itemprop="price">{{data.price|floatformat:'-3'}}</span> {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %}
+                       <link itemprop="availability" href="http://schema.org/InStock"/>
+                  </p>
+              {% endif %}
+              {% if item.price_kv %}
+                  <p class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                      <meta itemprop="priceCurrency" content="RUB" />
+                      <span itemprop="price">{{data.price_kv|floatformat:'-3'}}</span> р/кв.м.
+                       <link itemprop="availability" href="http://schema.org/InStock"/>
+                  </p>
+              {% endif %}
+              <p>
+                  <button class="btn btn-success product-in-cart" data-product="{{item.id}}" onclick="ym(73248691,'reachGoal','product_zakaz'); gtag('event', 'form', {'event_category':'submit', 'event_label': 'zakaz-tovar'});">ЗАКАЗАТЬ </button>
+              </p>
+              <p class="category-product-in"><b>Категория:</b>
+                  {% if item.pod_cat_item %}
+                    <a href="/catalog/{{item.cat_item.alias}}/{{item.pod_cat_item.alias}}/" style="color:#000;">{{item.pod_cat_item.name}}</a>
+                  {% else %}
+                    <a href="/catalog/{{item.cat_item.alias}}/" style="color:#000;">{{item.cat_item.name}}</a>
+                  {% endif %}
+              </p>
+          </div>
+            <div class="col-12">
+
+              <div class="right-desc-product-in">
+                  {{data.des_right|safe}}
+              </div>
+            </div>
+        </div>
+          {% if data.content %}
+          <div class="row product-in-desc-bottom">
+              <div class="col-12">
+                  <div class="op-in-product"><span>Описание</span>  <span class="ar-p-in">></span></div>
+              </div>
+              <div class="col-lg-1 col-sm-1"></div>
+              <div class=" col-12 product-content-in">
+                    {{ data.content | safe }}
+              </div>
+          </div>
+          {% endif %}
+          {% if upsel %}
+          <div class="row cross-title">
+              <div class="col-12">
+                  <p>Похожие товары</p>
+              </div>
+          </div>
+          <div class="row box">
+              {% for item in upsel.ups.all %}
+              <div class="col-lg-4 col-sm-6 col-12">
+                  <div class="items-blocks">
+                    <div class="img-item-block">
+                        <a href="/product/{{item.alias}}/">
+                            <img src="{{item.img_front.url}}" alt="{{item.name}}" />
+                        </a>
+                    </div>
+                    <div class="title-item-block">
+                      <a href="/product/{{item.alias}}/">{{item.name}}</a>
+                        {% if item.size %}
+                            <p>Размер: {{item.size}} мм</p>
+                        {% endif %}
+                        {% if item.dlina %}
+                            <p>Длина: {{item.dlina}}</p>
+                        {% endif %}
+                        {% if item.obrob %}
+                            <p>Обработка: {{item.obrob}}</p>
+                        {% endif %}
+                    </div>
+                    <div class="price-item-block">
+                        <p>
+                            {% if item.price %}{{item.price|floatformat:'-3'}} {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %} {% endif %}
+                        </p>
+                        <p>
+                            {% if item.price_kv %}{{item.price_kv|floatformat:'-3'}} р/кв.м {% endif %}
+                        </p>
+                    </div>
+                    <div class="item-block-a"><a href="/product/{{item.alias}}/">Подробнее</a></div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+        <div class="row cross-in small">
+            {% if cross %}
+                <div class="col-12">
+                    <div class="title-cross">
+                        С ЭТИМ ТОВАРОМ ПОКУПАЮТ:
+                        <div class="green-line"></div>
+                    </div>
+                </div>
+                {% for item in cross.cross.all%}
+                    <div class="col-lg-4 col-sm-6 col-6">
+                      <div class="items-blocks">
+                        <div class="img-item-block">
+                          <img src="{{item.img_front.url}}" alt="" />
+                        </div>
+                        <div class="title-item-block">
+                          <a href="/product/{{item.alias}}/">{{item.name}}</a>
+                        </div>
+                        <div class="price-cross">
+                            <span>
+                                {% if item.price %}{{item.price|floatformat:'-3'}} {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %} {% endif %}
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

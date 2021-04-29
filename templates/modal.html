@@ -1,0 +1,548 @@
+
+    <div
+      class="modal fade"
+      id="call-back"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="#" id="call-form">
+              <div class="form-group">
+                <label for="phone1">Телефон</label>
+                <input
+                  type="text"
+                  class="form-control form-control-custom phone-modal-form"
+                  name="phone"
+                  id="phone1"
+                  placeholder="+7(___)__-__-__"
+                />
+                <div class="form-group w-100">
+                  <input
+                    type="button"
+                    value="Заказать"
+                    class="btn btn-success send-call-button btn-shadow btn-custom w-100"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="call-back-obr"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="#" id="call-back-obr-form">
+              <div class="form-group">
+                  <p>
+                    <input
+                      type="text"
+                      class="form-control form-control-custom fio-modal-form"
+                      name="fio"
+                      placeholder="Ваше Имя"
+                    />
+                  </p>
+                  <p>
+                    <input
+                      type="text"
+                      class="form-control form-control-custom phone-modal-form"
+                      name="phone"
+                      placeholder="Номер телефон"
+                    />
+                  </p>
+                  <p>
+                    <input
+                      type="text"
+                      class="form-control form-control-custom email-modal-form"
+                      name="email"
+                      placeholder="Ваше email"
+                    />
+                  </p>
+                <div class="form-group w-100">
+                  <input
+                    type="button"
+                    value="Заказать"
+                    class="btn btn-success send-call-obr-button btn-shadow btn-custom w-100"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <div
+      class="modal fade"
+      id="call-back-product"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="#" id="call-form-product">
+              <div class="form-group">
+                <label for="metr">Имя</label>
+                <input
+                  type="text"
+                  class="form-control form-control-custom"
+                  name="metr"
+                  id="metr"
+                  placeholder="Имя"
+                />
+                <label for="phone_order">Телефон</label>
+                <input
+                  type="text"
+                  class="form-control form-control-custom"
+                  name="phone_order"
+                  id="phone_order"
+                  placeholder="+7(___)__-__-__"
+                />
+                <div class="form-group w-100">
+                  <input
+                    type="button"
+                    value="Заказать"
+                    class="btn btn-success send-order-button btn-shadow btn-custom w-100"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-success"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+              <div class="row-first">
+                <img src="/static/image/logo.png" alt="" class="logo-suc-modal">
+              </div>
+              <div class="row-second">
+                <div class="col-2">
+                  <img src="/static/image/ic-fiber.png"  alt="" class="flowers-ico">
+                </div>
+                <div class="col-8">
+                  Спасибо, что обратились в компанию Deckorator.ru!
+                </div>
+                <div class="col-2">
+                  <img src="/static/image/ic-fiber.png" alt="" class="flowers-ico">
+                </div>
+              </div>
+            <div class="row-three">
+                <div class="col-12">
+                  Менеджер свяжется с Вами в течение 5 минут для уточнения деталей заказа и консультации по всем интересующим вопросам.
+                </div>
+              </div>
+            <div class="col-2 green-modal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-error"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+              <div class="row-first">
+                <img src="/static/image/logo.png" alt="" class="logo-suc-modal">
+              </div>
+              <div class="row-second">
+                <div class="col-2">
+                  <img src="/static/image/ic-fiber.png" alt="" class="flowers-ico">
+                </div>
+                <div class="col-8">
+                  При отправки данных произошла ошибка!
+                </div>
+                <div class="col-2">
+                  <img src="/static/image/ic-fiber.png" alt="" class="flowers-ico">
+                </div>
+              </div>
+            <div class="row-three">
+                <div class="col-12">
+                 Попробуйте еще раз или свяжитесь с нами через контактные данные.
+                </div>
+              </div>
+            <div class="col-2 green-modal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-calc"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      style="z-index: 99999;"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+              <div class="container-fluid">
+                  <div class="row step-calc">
+                      <div class="col-lg-3 col-sm-3 col-1"></div>
+                      <div class="col-lg-1 col-sm-1 col-2"><span class="step active"><i class="fa fa-check" aria-hidden="true"></i></span> </div>
+                      <div class="col-lg-1 col-sm-1 col-2 s-l"> <div class="gre-line"></div>  </div>
+                      <div class="col-lg-1 col-sm-1 col-2"><span class="step second">2</span></div>
+                      <div class="col-lg-1 col-sm-1 col-2 s-l"> <div class="gre-line"></div> </div>
+                      <div class="col-lg-1 col-sm-1 col-2"><span class="step three">3</span></div>
+                      <div class="col-lg-3 col-sm-3"></div>
+                  </div>
+                  <div class="row content-calc-first active">
+                      <div class="col-1"></div>
+                      <div class="col-10 title-calc-first">
+                          <img src="/static/image/ic-fiber.png" class="flowers-ico" alt="">  ОБЛАСТЬ ПРИМЕНЕНИЯ
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-4 col-sm-4 col-12 selected-item" data-text="для заборов">
+                          <img src="/static/image/zabor.jpg" alt="ДЛЯ ЗАБОРОВ">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>ЗАБОР</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-4 col-sm-4 col-12 selected-item" data-text="для грядок">
+                          <img src="/static/image/gryadka.jpg" alt="ДЛЯ ГРЯДОК">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>ГРЯДКА</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-4 col-sm-4 col-12  selected-item" data-text="для фасада">
+                          <img src="/static/image/fasad.jpg" alt="ДЛЯ ФАСАДА">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>ФАСАД</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-4 col-sm-4 col-12  selected-item" data-text="для террасы">
+                          <img src="/static/image/terrasa.jpg" alt="ДЛЯ ТЕРРАСЫ">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>ТЕРРАСА</p>
+                      </div>
+                      <div class="col-1"></div>
+                  </div>
+                  <div class="row content-calc-second">
+                      <div class="col-1"></div>
+                      <div class="col-10 title-calc-first">
+                          <img src="/static/image/ic-fiber.png" alt="" class="flowers-ico">  ПЛАНИРУЕМАЯ ПЛОЩАДЬ
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-1 col-sm-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="20—30">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>20 — 30 м²</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="30-50">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>30 — 50 м²</p>
+                      </div>
+                      <div class="col-lg-1 col-sm-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="50-70">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>50 — 70 м²</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="70-100">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>70 — 100 м²</p>
+                      </div>
+                      <div class="col-lg-1 col-sm-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="более 100">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>более 100 м²</p>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-3 col-sm-3 col-5 selected-item" data-text="другое">
+                          <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                          <p>ДРУГОЕ</p>
+                      </div>
+                      <div class="col-1"></div>
+                  </div>
+                  <div class="row content-calc-three">
+                      <div class="col-1"></div>
+                      <div class="col-lg-10 col-sm-10 col-12 title-calc-first">
+                          <img src="/static/image/ic-fiber.png" alt="" class="flowers-ico">  ДАННЫЕ ДЛЯ СВЯЗИ
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-1"></div>
+                      <div class="col-lg-10 col-sm-10 col-12">
+                          <form>
+                            <div class="form-group">
+                              <label>Укажите Ваш город</label>
+                              <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group">
+                              <label>Ваше имя</label>
+                              <input type="text" class="form-control inputName" id="inputName3">
+                            </div>
+                            <div class="form-group">
+                              <label>Номер телефона</label>
+                              <input type="text" class="form-control" id="inputPhone" placeholder="+74957556983" required>
+                            </div>
+                            <div class="form-group">
+                              <label>Комментарий</label>
+                              <textarea class="form-control inputComment" id="inputComment3"></textarea>
+                            </div>
+                          </form>
+                      </div>
+                      <div class="col-1"></div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-1 col-sm-1"></div>
+                      <div class="col-lg-5 col-sm-5 col-6 back" data-step="1"><button class="btn">&#8592;  Назад</button></div>
+                      <div class="col-lg-5 col-sm-5 col-6 last active" data-step="1"><button class="btn" disabled>Далее  &#8594;</button></div>
+                      <div class="col-lg-5 col-sm-5 col-6 send-calc"><button class="btn ">Отправить  &#8594;</button></div>
+                      <div class="col-lg-1 col-sm-1"></div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.call-back').click(function(){
+              $('#call-back').modal('show');
+            });
+            $('.modal-obr').click(function(){
+                $('#call-back-obr').modal('show');
+            });
+            $('.banner-button').click(function(){
+                $('#modal-calc').modal('show');
+            });
+
+            $('.product-in-cart').click(function(){
+                $('#call-back-product').modal('show');
+            });
+
+            $('.send-call-obr-button').click(function(){
+                $.ajax({
+                    url: '/ajax/',
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                        type: 'send_call_obr',
+                        phone: $('#call-back-obr-form .phone-modal-form').val(),
+                        name: $('#call-back-obr-form .fio-modal-form').val(),
+                        email: $('#call-back-obr-form .email-modal-form').val(),
+                    },
+                    success: function (data, textStatus){
+                        if(data.status == 'ok'){
+                              $('#call-back-obr').modal('hide');
+                              $('#modal-success').modal('show');
+                        }
+                        if(data.status == 'error'){
+                            $('#call-back-obr').modal('hide');
+                            $('#modal-error').modal('show');
+                        }
+                    }
+                });
+            });
+            $('.send-call-button').click(function(){
+                $.ajax({
+                    url: '/ajax/',
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                        type: 'send_call',
+                        phone: $('#call-form .phone-modal-form').val()
+                    },
+                    success: function (data, textStatus){
+                        if(data.status == 'ok'){
+                              $('#call-back').modal('hide');
+                              $('#modal-success').modal('show');
+                        }
+                        if(data.status == 'error'){
+                            $('#call-back').modal('hide');
+                            $('#modal-error').modal('show');
+                        }
+                    }
+                });
+            });
+
+            $('.right-column-contact button').click(function(){
+                $.ajax({
+                    url: '/ajax/',
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                        type: 'send_contact_form',
+                        name: $('#call-back .inputName').val(),
+                        mail: $('#call-back #inputEmail').val(),
+                        comment: $('#call-back .inputComment').val()
+                    },
+                    success: function (data, textStatus){
+                        if(data.status == 'ok'){
+                              $('#call-back').modal('hide');
+                              $('#modal-success').modal('show');
+                        }
+                        if(data.status == 'error'){
+                            $('#call-back').modal('hide');
+                            $('#modal-error').modal('show');
+                        }
+                    }
+                });
+            });
+
+            $('.send-order-button').click(function(){
+                $.ajax({
+                    url: '/ajax/',
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                        type: 'create_order',
+                        s: $('#metr').val(),
+                        phone: $('#phone_order').val(),
+                        product: $('.product-in-cart').attr('data-product')
+                    },
+                    success: function (data, textStatus){
+                        if(data.status == 'ok'){
+                              $('#call-back-product').modal('hide');
+                              $('#modal-success').modal('show');
+                        }
+                        if(data.status == 'error'){
+                            $('#call-back-product').modal('hide');
+                            $('#modal-error').modal('show');
+                        }
+                    }
+                });
+            });
+            $('.content-calc-first .selected-item').click(function(){
+                $('.content-calc-first .selected-item').removeClass('active');
+                $('.content-calc-first .selected-item .check').removeClass('active');
+                $(this).addClass('active');
+                $(this).children('.check').addClass('active');
+                $('.last button').removeAttr('disabled');
+            });
+            $('.content-calc-second .selected-item').click(function(){
+                $('.content-calc-second .selected-item').removeClass('active');
+                $('.content-calc-second .selected-item .check').removeClass('active');
+                $(this).addClass('active');
+                $(this).children('.check').addClass('active');
+                $('.last button').removeAttr('disabled');
+            });
+            $('.last').click(function(){
+                let step = $(this).attr('data-step');
+                $('.last button').prop("disabled",true);
+                switch(step) {
+                    case '1':
+                        $(this).attr('data-step','2');
+                        $('.back').attr('data-step','2');
+                        $('.content-calc-first').removeClass('active');
+                        $('.content-calc-second').addClass('active');
+                        $('.step.second').addClass('active').html('<i class="fa fa-check" aria-hidden="true"></i>');
+                    break;
+                     case '2':
+                        $(this).attr('data-step','3');
+                        $('.back').attr('data-step','3');
+                        $(this).removeClass('active');
+                        $('.send-calc').addClass('active');
+                        $('.content-calc-second').removeClass('active');
+                        $('.content-calc-three').addClass('active');
+                        $('.step.three').addClass('active').html('<i class="fa fa-check" aria-hidden="true"></i>');
+                    break;
+                }
+            });
+            $('.back').click(function(){
+                let step = $(this).attr('data-step');
+                $('.last button').removeAttr('disabled');
+                switch(step) {
+                    case '1':
+                        $('#modal-calc').modal('hide');
+                    break;
+                     case '2':
+                        $(this).attr('data-step','1');
+                        $('.last').attr('data-step','1');
+                        $('.content-calc-second').removeClass('active');
+                        $('.content-calc-first').addClass('active');
+                        $('.step.second').removeClass('active').html('2');
+                    break;
+                    case '3':
+                        $(this).attr('data-step','2');
+                        $('.last').attr('data-step','2');
+                        $('.send-calc').removeClass('active');
+                        $('.last').addClass('active');
+                        $('.content-calc-three').removeClass('active');
+                        $('.content-calc-second').addClass('active');
+                        $('.step.three').removeClass('active').html('2');
+                    break;
+                }
+            });
+            $('.send-calc').click(function(){
+                let first = $('.content-calc-first .selected-item.active').attr('data-text');
+                let second = $('.content-calc-second .selected-item.active').attr('data-text');
+                let city = $('.content-calc-three #inputCity');
+                let name = $('.content-calc-three .inputName');
+                let phone = $('.content-calc-three #inputPhone');
+                let comment = $('.content-calc-three .inputComment');
+                gtag('event', 'form', {'event_category':'submit', 'event_label': 'raschet'});
+                if (phone.val() == ''){
+                    phone.css('borderColor','red');
+                    return false;
+                }
+                $.ajax({
+                    url: '/ajax/',
+                    method: "POST",
+                    data: {
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                        type: 'check_price',
+                        first: first,
+                        second: second,
+                        city: city.val(),
+                        name: name.val(),
+                        phone: phone.val(),
+                        comment: phone.val()
+                    },
+                    success: function (data, textStatus){
+                        if(data.status == 'ok'){
+                              $('#modal-calc').modal('hide');
+                              $('#modal-success').modal('show');
+                        }
+                        if(data.status == 'error'){
+                            $('#modal-calc').modal('hide');
+                            $('#modal-error').modal('show');
+                        }
+                    }
+                });
+            });
+        });
+    </script>

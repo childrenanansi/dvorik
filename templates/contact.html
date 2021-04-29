@@ -1,0 +1,34 @@
+{% extends '__base2.html' %} {% block content %}
+
+<div class="container py-3 mt-4 section-about">
+
+  <div class="container contact">
+    <div class="row">
+      <div class="col-12 title-contact">Контакты</div>
+    </div>
+   <div class="row content-contact" itemscope itemtype="http://schema.org/Organization">
+      <div class="col-lg-6 col-sm-12 col-12 left-column-contact">
+        <div class="contact-input"><div><img src="/static/image/ic-marker.png" alt=""/></div><div  itemscope itemtype="https://schema.org/PostalAddress">{{address|safe}}</div></div>
+        <div class="contact-input"><div><img src="/static/image/ic-phone.png" alt=""/></div><div itemprop="telephone" >{{phone|safe}}</div></div>
+
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A033c1cb308c11e14966104a942473b2cbf1f78ed701aea92e6dd33b641fbb1f8&amp;source=constructor" style="border:0; width:100%; height:266px; min-height: 266px;" ></iframe>
+      </div>
+     <div class="col-lg-6 col-sm-12 col-12 right-column-contact">
+       <form>
+        <div class="form-group">
+          <input type="text" class="form-control inputName" id="inputName1" placeholder="Имя">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" id="inputEmail" placeholder="Почта">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control inputComment" id="inputComment1" placeholder="Комментарий"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="ym(73248691,'reachGoal','contact_click')">СВЯЗАТЬСЯ С НАМИ</button>
+      </form>
+     </div>
+    </div>
+ </div>
+
+</div>
+{% endblock %}

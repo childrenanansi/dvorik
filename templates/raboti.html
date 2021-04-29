@@ -1,0 +1,111 @@
+{% extends '__base2.html' %}
+{% block content %}
+<div class="container we-works">
+  <div class="row">
+    <div class="col-12">
+      <p class="title-works">{{data.seo_h1}}</p>
+    </div>
+  </div>
+  <div class="row cat-work-filter">
+    <div class="col-12">
+      <ul>
+        <li class="
+        {% if select_cat == 'all' or select_cat == '' %}
+        active
+        {% endif %}
+        "><a href="?cat_f=all">Все проекты</a>
+        {% for catproject in catprojects%}
+          <li
+        class="
+        {% if select_cat == catproject.alias %}
+        active
+        {% endif %}
+        "
+      ><a href="?cat_f={{catproject.alias}}">{{catproject.name}}</a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="row base-work">
+    <div class="col-lg-3 col-sm-6 col-12">
+    <select class="form-control">
+      <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По дате &#8593;</option>
+      <option value="desc" {% if 'desc' ==  order%}selected{% endif %}>По дате &#8595;</option>
+    </select>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12">
+      Отображение {{first_pages}}–{{pages}} из {{ projects.count }}
+    </div>
+    <div class="col-lg-6 col-sm-12 col-12 pagination">
+        <div class="step-links">
+            {% if pag.has_other_pages %}
+            <ul class="pagination">
+            {% if pag.has_previous %}
+            <li class="arrow"><a href="?page={{ pag.previous_page_number }}">&#8592;</a></li>
+            {% endif %}
+            {% for i in pag.paginator.page_range %}
+            {% if pag.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if pag.has_next %}
+            <li class="arrow"><a href="?page={{ blog_list.next_page_number }}">&#8594;</a></li>
+            {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+  <div class="row project-home">
+    {% for project in pag %}
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="black-fon">
+                    <a href="/raboti/{{project.alias}}/" class="project-home-a">
+                        <img src="{{project.img_front.url}}" alt="" />
+                        <p>Смотреть проект <i class="fas fa-long-arrow-alt-right"></i></p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+  </div>
+   <div class="row base-work footers">
+    <div class="col-lg-3 col-sm-6 col-12">
+
+    <select class="form-control">
+      <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По дате &#8593;</option>
+      <option value="desc" {% if 'desc' ==  order%}selected{% endif %}>По дате &#8595;</option>
+    </select>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12">
+      Отображение {{first_pages}}–{{pages}} из {{ projects.count }}
+    </div>
+    <div class="col-lg-6 col-sm-12 col-12pagination">
+        <div class="step-links">
+            {% if pag.has_other_pages %}
+            <ul class="pagination">
+            {% if pag.has_previous %}
+            <li class="arrow"><a href="?page={{ pag.previous_page_number }}">&#8592;</a></li>
+            {% endif %}
+            {% for i in pag.paginator.page_range %}
+            {% if pag.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if pag.has_next %}
+            <li class="arrow"><a href="?page={{ blog_list.next_page_number }}">&#8594;</a></li>
+            {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+<form id="updatePosts" method="GET"  style="display: none">
+    {% if select_cat %} <input type="text" name="cat_f" value ="{{select_cat}}" />{% endif %}
+    <input type="text" name="sort" class="sort">
+</form>
+{% endblock %}

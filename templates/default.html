@@ -1,0 +1,17 @@
+{% extends '__base2.html' %} {% block content %}
+
+<div class="container py-3 mt-4 section-about">
+
+  <div class="row">
+    <div class="col-12">
+      <h1>{{data.seo_h1}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {{data.content|safe}}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends '__base2.html' %} {% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <p class="title-raboti-item">{{data.seo_h1}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 raboti-top">
+      <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+        {% for slider in sliders %}
+            <li class="gallery-item" data-thumb="{{slider.image.url}}">
+                <img src="{{slider.image.url}}" alt="" />
+                 </li>
+        {% endfor %}
+        </ul>
+    </div>
+  </div>
+  <div class="row nav-raboti-item">
+    <div class="col-lg-6 col-sm-6 col-6">
+      <a href="/raboti/">
+        <span class="back-arrow">
+        &#8592;
+        </span>
+        <span class="back-s">
+          Назад к списку
+        </span>
+      </a>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-6 next-p">
+      {% if next %}
+      <a href="/raboti/{{next}}/">
+        <span class="back-s">
+          Следующий проект
+        </span>
+        <span class="back-arrow">
+        &#8594;
+        </span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

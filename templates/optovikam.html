@@ -1,0 +1,112 @@
+{% extends '__base2.html' %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12 home-ban opt">
+        <div class="banner-img" itemscope itemtype="http://schema.org/ImageObject">
+          <img src="/static/image/ban_index.png"  itemprop="contentUrl" alt="" />
+        </div>
+
+        <div class="banner-text">
+          <span>
+            Террасная доска <br> и изделия из ДПК
+          </span>
+        </div>
+        <div class="obr modal-obr">
+          <button type="button" class="btn btn-primary" id="price-check" onclick="gtag('event', 'form', {'event_category':'submit', 'event_label': 'opt-price'});">Запросить оптовый прайс лист</button>
+        </div>
+      </div>
+    </div>
+</div>
+{% if items %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="container popular">
+          <div class="row">
+            <div class="col-12">
+            </div>
+          </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endif %}
+<div class="container-fluid info-home">
+      <div class="row">
+        <div class="col-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6 col-12">
+                <p class="title-info">
+                  Информация для оптовиков:
+                  </p><div class="green-line"></div>
+                <p></p>
+                <p>
+                  Если Вы хотите с нами сотрудничать, мы готовы предоставить скидку на оптовые партии нашей продукции
+                </p>
+                <p>
+                  Что входит в образец:
+                </p>
+                <ul>
+                  <li><span>Доска дпк длиной 30 см </span></li>
+                  <li><span>Несколько цветов этого образца </span></li>
+                </ul>
+                <a href="javascript:void(0);" class="btn modal-obr" id="get-samples" onclick="gtag('event', 'form', {'event_category':'submit', 'event_label': 'besplatniy-obrazec'});">Получить бесплатные образцы</a>
+              </div>
+              <div class="col-lg-6 col-sm-6 col-6 a-sm-ll">
+                  <img src="/static/image/obrazec.png" class="obrazec" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="container optovikam">
+    <div class="row">
+      <div class="col-12">
+        <p class="title-optovikam"><b>Доски из ДПк</b></p>
+        <p>За много лет работы, мы прошли путь от небольшого производства до большого склада и автоматизированного цеха<br/>
+и 14 дилерами по всей России.</p>
+      </div>
+    </div>
+    <div class="row maps-optovikam">
+      <div class="col-2">
+        <ul>
+          <li><span>Москва</span></li>
+          <li><span>Санкт-Петербург</span></li>
+          <li><span>Казань</span></li>
+          <li><span>Самара</span></li>
+          <li><span>Тольятти</span></li>
+          <li><span>Сызрань</span></li>
+          <li><span>Ульяновск</span></li>
+          <li><span>Чебоксары</span></li>
+          <li><span>Новосибирск</span></li>
+          <li><span>Пенза</span></li>
+          <li><span>Липецк</span></li>
+          <li><span>Махачкала</span></li>
+          <li><span>Сочи</span></li>
+        </ul>
+      </div>
+      <div class="col-10">
+<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Acb3883c9dcd3400914ea53fb4d29c296681a7984e053ee6169636b81952f60c6&amp;source=constructor" style="width:100%; height:380px; min-height: 380px;" frameborder="0"></iframe>
+      </div>
+    </div>
+  <div class="row optovikam-dos">
+    <div class="col-12">
+      <p><b>Доставка осуществляется по всей России</b></p>
+      <p>Отправку в день заказа со складов в Москве, Ульяновске, Санкт-Петербурге, Тольятти, Казани, Самаре, Чебоксарах<br/>
+Доставляем собственным транспортом или транспортными компаниями: ПЭК, Деловые линии и др.</p>
+    </div>
+  </div>
+  <div class="row optovikam-partn">
+    <div class="col-12">
+      <p>
+      <img src="/static/image/ic-fiber.png" class="flowers-ico" alt="" />  <b>Если хотите стать нашим партнером, то Вы можете связаться с нами любым удобным способом</b></p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

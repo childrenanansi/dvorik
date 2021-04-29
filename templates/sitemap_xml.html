@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{host}}{{pages_index.alias}}/</loc>
+        <lastmod>{{pages_index.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    {% for u in catalog %}
+    <url>
+        <loc>{{host}}catalog/{{u.alias}}/</loc>
+        <lastmod>{{u.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    {% endfor %}
+    {% for u in pod_catalog %}
+    <url>
+        <loc>{{host}}catalog/{{u.parent.alias}}/{{u.alias}}/</loc>
+        <lastmod>{{u.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    {% endfor %}
+    {% for u in items %}
+    <url>
+        <loc>{{host}}product/{{u.alias}}/</loc>
+        <lastmod>{{u.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    {% endfor %}
+
+    {% for u in works %}
+    <url>
+        <loc>{{host}}raboti/{{u.alias}}/</loc>
+        <lastmod>{{u.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    {% endfor %}
+    {% for u in pages %}
+    <url>
+        <loc>{{host}}{{u.alias}}/</loc>
+        <lastmod>{{u.lastmod|date:"Y-m-d"}}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.1</priority>
+    </url>
+    {% endfor %}
+</urlset>
