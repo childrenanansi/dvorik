@@ -10,7 +10,8 @@
       {% elif templated_title %}{{templated_title }}{% endif %}
     </title>
       <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <meta
       name="description"
       content="{% if data.seo_description %}{{ data.seo_description }}{% elif templated_description %}{{ templated_description }}{% endif %}"
@@ -18,7 +19,7 @@
     <link rel="canonical" href="//{{ canonical }}" />
     <meta name="keywords"
           content="{% if data.seo_keywords%}{{data.seo_keywords}}{%elif templated_keywords%}{{templated_keywords}}{%endif%}" />
-    <meta property="og:site_name" content="https://avtovozrf.ru/" />
+    <meta property="og:site_name" content="" />
     <meta property="og:locale" content="ru_RU" />
     <meta
       property="og:title"
@@ -119,19 +120,23 @@
                                 <div class="row first-footer-row">
                                   <div class="col-lg-3 col-sm-12 col-12">
                                           <a href="/">
-                                            <img src="/static/image/logo2.png"  alt="" /></a>
+                                            <img src="/static/image/logo_footer.png"  class="logo" alt="" /></a>
                                   </div>
-                                  <div class="col-lg-9 col-sm-12 col-12 flex-footer flex-menu">
-                                    <div class="btn-group header-cat f">
-                                      <button type="button" class="btn dropdown-toggle drop-foot-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Каталог
-                                      </button>
-                                    </div>
-                                    <div class="btn-group header-cat header-cat-small">
-                                      <button type="button" class="btn dropdown-toggle drop-foot-nav-small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Каталог
-                                      </button>
-                                    </div>
+                                    <div class="col-lg-1 col-12"></div>
+                                  <div class="col-lg-8 col-sm-12 col-12 flex-footer flex-menu">
+                                        <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle header-cat" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Каталог
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      {% for m in menu %}
+                            <a class="dropdown-item" href="/catalog/{{m.alias}}/">
+                              <img src="{{m.ico.url}}" alt="{{m.name}}">
+                                <span>{{m.name}}</span>
+                            </a>
+                      {% endfor %}
+                    </div>
+                  </div>
                                   <div class="col-12 catalog-small-menu f">
                                     {% for m in menu %}
                                       <div class="flex-smallmenu">
@@ -171,7 +176,7 @@
           <div class="container">
             <div class="footer-copyright__inner">
               <div class="footer-copyright-item">
-                <p>© 2020 Deckorator.ru</p>
+                <p>© 2021 Dvordpk.ru</p>
               </div>
             </div>
           </div>
@@ -320,7 +325,6 @@
     ></script>
     <script src="/static/js/index.js"></script>
     <script src="/static/js/custom.js"></script>
-<script src="//code-ya.jivosite.com/widget/msuoMXmepM" async></script>
 <link rel="stylesheet" href="/static/funcy/jquery.fancybox.min.css" />
   <script src="/static/funcy/jquery.fancybox.min.js"></script>
 
@@ -333,7 +337,7 @@
   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-  ym(73248691, "init", {
+  ym({{metrics_yandex}}, "init", {
        clickmap:true,
        trackLinks:true,
        accurateTrackBounce:true,
@@ -342,7 +346,7 @@
   
 </script>
 
-<noscript><div><img src="https://mc.yandex.ru/watch/73248691" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/{{metrics_yandex}}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
 <!-- /Yandex.Metrika counter -->
 

@@ -2,33 +2,70 @@
 
 <div class="container py-3 mt-4 section-about">
 
-  <div class="container contact">
+  <div class="container-fluid contact">
     <div class="row">
-      <div class="col-12 title-contact">Контакты</div>
-    </div>
-   <div class="row content-contact" itemscope itemtype="http://schema.org/Organization">
-      <div class="col-lg-6 col-sm-12 col-12 left-column-contact">
-        <div class="contact-input"><div><img src="/static/image/ic-marker.png" alt=""/></div><div  itemscope itemtype="https://schema.org/PostalAddress">{{address|safe}}</div></div>
-        <div class="contact-input"><div><img src="/static/image/ic-phone.png" alt=""/></div><div itemprop="telephone" >{{phone|safe}}</div></div>
+        <div class="col-12">
+             <div class="container">
+               <div class="row content-contact">
+                  <div class="col-lg-6 col-sm-6 col-12 left-column-contact">
+                      <div class="bold">
+                          МЫ ВСЕГДА РАДЫ ВИДЕТЬ ВАС В НАШЕМ <br> ОФИСЕ <span>DVORDPK</span>!
+                          <div class="blue-line"></div>
+                      </div>
+                    <div class="contact-input">
+                        <div>{{address|safe}}</div>
+                    </div>
+                    <div class="contact-input">
+                        <div>Телефон компании: {{phone|safe}}</div>
+                    </div>
+                    <div class="contact-input">
+                        <div>Адрес электронной почты: hello@dvordpk.com</div>
+                    </div>
+                    <div class="contact-input">
+                        <div>Режим работы: Ежедневно — с 10:00 до 19:00</div>
+                    </div>
+                    <div class="contact-input">
+                        <div>Выходные и праздничные дни — офис не работает</div>
+                    </div>
+                    <div class="contact-input">
+                        <div>Ссылки на социальные сети:</div>
+                    </div>
+                    <div class="flex-footer cont">
+                           <a href="https://www.youtube.com/channel/UCPxQzq-9jfffa73gtfxU6Iw" target='_blank' title="Instagram"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                          <a href="https://www.instagram.com/deckorator.ru/" target='_blank' title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                          <a href="https://wa.me/79171236397" target='_blank' title="Whatsapp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                          <a href="viber://add?number=79171236397" target='_blank' title="Viber"><i class="fab fa-viber" aria-hidden="true"></i></a>
+                          <a href="tel:+79171236397"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                      </div>
+                  </div>
+                 <div class="col-lg-6 col-sm-6 col-12 right-column-contact">
+                   <form>
+                    <div class="form-group">
+                      <input type="text" class="form-control inputName" id="inputName2" placeholder="Имя">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Почта">
+                    </div>
+                    <div class="form-group">
+                      <textarea class="form-control inputComment" id="inputComment2" placeholder="Комментарий"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary">СВЯЗАТЬСЯ С НАМИ</button>
+                  </form>
+                 </div>
+                </div>
 
-          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A033c1cb308c11e14966104a942473b2cbf1f78ed701aea92e6dd33b641fbb1f8&amp;source=constructor" style="border:0; width:100%; height:266px; min-height: 266px;" ></iframe>
-      </div>
-     <div class="col-lg-6 col-sm-12 col-12 right-column-contact">
-       <form>
-        <div class="form-group">
-          <input type="text" class="form-control inputName" id="inputName1" placeholder="Имя">
+               <div class="row content-contact">
+                  <div class="col-lg-6 col-sm-6 col-12 left-column-contact">
+                      <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A033c1cb308c11e14966104a942473b2cbf1f78ed701aea92e6dd33b641fbb1f8&amp;source=constructor" style="border:0; width:100%; height:278px; min-height: 278px;"  ></iframe>
+                  </div>
+                 <div class="col-lg-6 col-sm-6 col-12 right-column-contact">
+                     <div><img src="/static/image/image_contact.jpg" width="100%" /></div>
+                 </div>
+                </div>
+             </div>
         </div>
-        <div class="form-group">
-          <input type="email" class="form-control" id="inputEmail" placeholder="Почта">
-        </div>
-        <div class="form-group">
-          <textarea class="form-control inputComment" id="inputComment1" placeholder="Комментарий"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="ym(73248691,'reachGoal','contact_click')">СВЯЗАТЬСЯ С НАМИ</button>
-      </form>
-     </div>
     </div>
- </div>
+</div>
 
 </div>
 {% endblock %}
