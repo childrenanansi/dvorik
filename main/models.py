@@ -111,6 +111,32 @@ class Project(Page):
     def get_absolute_url(self):
         return reverse('main:raboti_item', kwargs={'alias': self.alias})
 
+class Akcii(models.Model):
+    class Meta:
+        verbose_name = u"Акции"
+        verbose_name_plural = u"Акции"
+
+    name = models.CharField(max_length=200, verbose_name=u"Название")
+    image = models.ImageField(verbose_name='Изображение', null=True, blank=True)
+    textpage = models.ForeignKey(TextPage, verbose_name='страницы', on_delete=models.SET_NULL, null=True, blank=True)
+    desc = RichTextField(verbose_name=u"Описание акции", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Banner(models.Model):
+    class Meta:
+        verbose_name = u"Изображения для слайдеров"
+        verbose_name_plural = u"Изображения для слайдеров"
+
+    name = models.CharField(max_length=200, verbose_name=u"Название в банере")
+    image = models.ImageField(verbose_name='Изображение', null=True, blank=True)
+    desc = RichTextField(verbose_name=u"Описание в банере", null=True, blank=True)
+    textpage = models.ForeignKey(TextPage, verbose_name='страницы', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Slider(models.Model):
     class Meta:
         verbose_name = u"Изображения для слайдеров"

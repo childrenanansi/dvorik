@@ -51,8 +51,12 @@ def render_textpage(request, alias, object):
         canonical = textpage_data.canonical
     else:
         canonical = '{}{}'.format(request.get_host(), request.path)
+    akcii = {"akcii": Akcii.objects.filter(textpage__id=textpage_data.id)}
+    banner = {"banner": Banner.objects.filter(textpage__id=textpage_data.id)}
     canonical_obj = {'canonical': canonical}
     context = dict(default_context_d, **canonical_obj)
+    context = dict(context, **akcii)
+    context = dict(context, **banner)
     context = dict(context, **textpage_context)
     menu_obj = {'menu': CatItems.objects.all()}
     context = dict(context, **menu_obj)
@@ -124,7 +128,9 @@ def textpage(request, alias):
 
 def raboti(request):
     textpage_data, template = render_textpage(request, "raboti", TextPage)
+    print(textpage_data)
     select_cat = ''
+    cat_name = None
     if request.GET.get('sort') == 'desc':
         ordering = '-lastmod'
         ord = 'desc'
@@ -133,6 +139,8 @@ def raboti(request):
         ordering = 'lastmod'
     if request.GET.get('cat_f') and request.GET.get('cat_f') != 'all':
         select_cat = request.GET.get('cat_f')
+        if request.GET.get('cat_f') != 'all':
+            cat_name = CatProject.objects.get(alias=request.GET.get('cat_f'))
         if ordering:
             projects = Project.objects.select_related('cat').filter(cat__alias=request.GET.get('cat_f')).all().order_by(ordering)
         else:
@@ -168,6 +176,7 @@ def raboti(request):
             'pag': page_obj,
             'pages': pages,
             'order': ord,
+            'cat_name': cat_name,
             'select_cat': select_cat,
             'first_pages': first_pages,
             'projects': projects,

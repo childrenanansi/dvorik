@@ -25,10 +25,19 @@ page_list = ("menushow", "sitemap")
 class SettingsAdmin(admin.ModelAdmin):
     fieldsets = [("Основные", {"fields": ["robots", "phone", "address", "header_additional", "metrics_google", "metrics_yandex"]})]
 
+class Banner(admin.TabularInline):
+    model = Banner
+
+class Akcii(admin.TabularInline):
+    model = Akcii
+
 @admin.register(TextPage)
 class TextPageAdmin(admin.ModelAdmin):
     fieldsets = [("Основные", {"fields": ["name", "is_service", "img_path"]})] + page_fields
     list_display = ["name", "is_service"]
+    inlines = [
+        Banner, Akcii
+    ]
 
 @admin.register(DirectionTemplate)
 class DirectionTemplateAdmin(admin.ModelAdmin):
