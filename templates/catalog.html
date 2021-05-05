@@ -1,29 +1,67 @@
 {% extends '__base2.html' %} {% block content %}
 
-<div class="container">
+<div class="container-fluid base-work">
   <div class="row">
-    <div class="col-12 breadcrumbs">
-        <ul itemscope itemtype="https://schema.org/BreadcrumbList">
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="/catalog/" title="Каталог" itemprop="item">
-                <span itemprop="name">Каталог</span>
-                <meta itemprop="position" content="0">
-            </a>
-            </li>
-        </ul>
+    <div class="col-12">
+        <div class="container we-works">
+            <div class="row">
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="/catalog/" title="Каталог" itemprop="item">
+                        <span itemprop="name">Каталог</span>
+                        <meta itemprop="position" content="0">
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
   </div>
+</div>
+<div class="container kategory-bo">
   <div class="row">
     <div class="col-lg-3 col-sm-12 col-12 left-columns-items">
-      <ul>
+      <ul class="menu-cat">
       {% for m in menu %}
-        <li><a href="/catalog/{{m.alias}}/">{{m.name}}</a></li>
+        <li>
+            <p>
+                <a href="/catalog/{{m.alias}}/"><img src="{{m.ico.url}}"> <span>{{m.name}}</span></a>
+                <span class="open-podmenu"><img src="/static/image/ic-arrow-1.png" /></span>
+            </p>
+            <ul class="podmenu">
+                {% for pc in pod_menu %}
+                    {% if pc.parent.id == m.id %}
+                        <li>
+                             <a href="/catalog/{{m.alias}}/{{pc.alias}}/">{{pc.name}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
       {% endfor %}
       </ul>
     </div>
 
     <div class="col-lg-9 col-sm-12 col-12 right-columns-items">
-      <div class="container-fluid">
+      <div class="container-fluid kach">
+          <div class="row">
+              <div class="col-3">
+                  <img src="/static/image/ic-wooden-1.png" />
+                  <span>Собственное <br> производство</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-money-1.png" />
+                  <span>Выгодные <br>цены</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-pr-1.png" />
+                  <span>Продукция всегда<br> на складе</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-check-1.png" />
+                  <span>Гарантия<br> 3 года</span>
+              </div>
+          </div>
           <!--<div class="col-lg-3 col-sm-6 col-12">
               <select class="form-control">
                 <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По цене &#8593;</option>
@@ -150,8 +188,14 @@
         </div>
       </div>
     </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-12 col-12 left-columns-items"></div>
+        <div class="col-9 content-category-p">
+            {{data.content|safe}}
+        </div>
+    </div>
   </div>
-</div>
+
 <form id="updatePosts" method="GET"  style="display: none">
     {% if search %}<input type="text" name="search" value="{{search}}" class="search">{% endif %}
     <input type="text" name="sort" class="sort">

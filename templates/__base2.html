@@ -208,6 +208,17 @@
     <script src="/static/js/lightslider.js"></script>
     <script>
              $(document).ready(function() {
+                $('.open-podmenu').click(function(){
+                    if($(this).hasClass('active')){
+                        $(this).removeClass('active');
+                        $(this).children('img').attr('src','/static/image/ic-arrow-1.png');
+                        $(this).parent('p').parent('li').children('.podmenu').removeClass('active');
+                    }else{
+                        $(this).addClass('active');
+                        $(this).children('img').attr('src','/static/image/ic-arrow-d.png');
+                        $(this).parent('p').parent('li').children('.podmenu').addClass('active');
+                    }
+                });
                 $("#content-slider").lightSlider({
                     loop:true,
                     keyPress:true
