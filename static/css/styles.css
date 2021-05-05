@@ -852,8 +852,22 @@ blockquote {
     margin-top: 21px;
 }
 
+.lSSlideOuter .lSPager.lSGallery{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.lSSlideOuter .lSPager.lSGallery li{
+    width:16% !important;
+    margin-right:30px !important;
+    margin-bottom:30px !important;
+}
+
 .nav-raboti-item{
     margin-top: 50px;
+    margin-bottom:50px;
 }
 
 .back-s{

@@ -198,6 +198,9 @@ def raboti_item(request, alias):
     return HttpResponse(template.render(dict({
         **context,
         'sliders': Slider.objects.filter(project=project),
+        'project': project,
+        'akcii': Akcii.objects.filter(textpage__id=TextPage.objects.get(alias='raboti').id),
+        'catprojects': CatProject.objects.all(),
         'next': alias
     })))
 

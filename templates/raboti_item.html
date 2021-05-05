@@ -3,12 +3,71 @@
 
   <div class="row">
     <div class="col-12">
-      <p class="title-raboti-item">{{data.seo_h1}}</p>
     </div>
   </div>
-
+</div>
+<div class="container-fluid base-work">
   <div class="row">
-    <div class="col-12 raboti-top">
+      <div class="col-12">
+        <div class="container we-works">
+            <div class="row">
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" title="Главная" itemprop="item">
+                    <span itemprop="name">Главная</span>
+                    <meta itemprop="position" content="0">
+                </a> <span>-</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/raboti/" title="Наши работы" itemprop="item">
+                    <span itemprop="name">Наши работы</span>
+                    <meta itemprop="position" content="1">
+                </a>
+                <span>-</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">{{project.cat.name}}</span>
+                    <meta itemprop="position" content="2">
+            </li>
+        </ul>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row project-home">
+      <div class="col-3 left-col">
+          <ul>
+            <li class="
+            {% if select_cat == 'all' or select_cat == '' %}
+            active
+            {% endif %}
+            "><a href="/raboti/?cat_f=all"><span>Все проекты</span> <img src="/static/image/ic-arrow-1.png" /></a>
+            {% for catproject in catprojects%}
+              <li
+            class="
+            {% if select_cat == catproject.alias %}
+            active
+            {% endif %}
+            "
+          ><a href="/raboti/?cat_f={{catproject.alias}}"><span>{{catproject.name}}</span> <img src="/static/image/ic-arrow-1.png" /></a>
+            {% endfor %}
+          </ul>
+          {% if akcii %}
+          <div class="rab-akc">
+            <h4 class="title-akcii">Акции</h4>
+              {% for a in akcii %}
+                <div class="akcii-block">
+                    <img src="{{a.image.url}}" alt="{{a.name}}" style="width:100%;" />
+                    <div class="akcii-desc"><div>{{a.desc|safe}}</div></div>
+                    <div class="akcii-name">{{a.name|safe}} </div>
+                </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+      </div>
+    <div class="col-9 raboti-top">
       <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
         {% for slider in sliders %}
             <li class="gallery-item" data-thumb="{{slider.image.url}}">
@@ -19,7 +78,8 @@
     </div>
   </div>
   <div class="row nav-raboti-item">
-    <div class="col-lg-6 col-sm-6 col-6">
+      <div class="col-3 left-col"></div>
+    <div class="col-lg-9 col-sm-9 col-9">
       <a href="/raboti/">
         <span class="back-arrow">
         &#8592;

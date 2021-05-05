@@ -227,7 +227,7 @@
                     loop:true,
                     onSliderLoad: function() {
                         $('#image-gallery').removeClass('cS-hidden');
-                        $('.raboti-top .lSSlideOuter').prepend($('.lSPager'));
+                        $('.lSPager li').css('width','135px');
                         $('.product-gallery .lSSlideOuter a img').attr('onClick',"$('.loopa-product').attr('href', $(this).attr('src'))");
                     }
                 });
