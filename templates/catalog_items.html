@@ -1,14 +1,16 @@
 {% extends '__base2.html' %} {% block content %}
 
-<div class="container">
+<div class="container-fluid base-work">
   <div class="row">
-    <div class="col-12 breadcrumbs">
-        <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+    <div class="col-12">
+        <div class="container we-works">
+            <div class="row">
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a href="/catalog/" title="Каталог" itemprop="item">
                     <span itemprop="name">Каталог</span>
                     <meta itemprop="position" content="0">
-                </a> <span>/</span>
+                </a> <span>-</span>
             </li>
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a href="/catalog/{{category.alias}}/" title="{{category.name}}" itemprop="item">
@@ -18,52 +20,126 @@
             </li>
             {% if pod_category %}
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span>/</span>
+                <span>-</span>
                     <span itemprop="name">{{pod_category.name}}</span>
                     <meta itemprop="position" content="2">
             </li>
             {% endif %}
         </ul>
+            </div>
+        </div>
     </div>
   </div>
+</div>
+<div class="container kategory-bo">
    <div class="row">
     <div class="col-lg-3 col-sm-12 col-12 left-columns-items">
-        <div class="parent-category">
-            <a href="/catalog/{{category.alias}}/">
-                <div class="img-f-left"><img src="{{category.ico.url}}" alt="{{category.name}}"></div>
-                <div class="img-s-left">{{category.name}}</div>
-            </a>
-        </div>
-      <ul>
-      {% for m in left_menu %}
-        <li><a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a></li>
+      <ul class="menu-cat">
+      {% for m in menu %}
+        <li>
+            <p>
+                <a href="/catalog/{{m.alias}}/"><img src="{{m.ico.url}}"> <span>{{m.name}}</span></a>
+                {% if pod_category.parent and pod_category.parent.id == m.id %}
+                    <span class="open-podmenu active">
+                        <img src="/static/image/ic-arrow-d.png" />
+                    </span>
+                {% else %}
+                    <span class="open-podmenu">
+                        <img src="/static/image/ic-arrow-1.png" />
+                    </span>
+                {% endif %}
+            </p>
+            {% if pod_category.parent and pod_category.parent.id == m.id %}
+            <ul class="podmenu active">
+                {% for pc in pod_menu %}
+                    {% if pc.parent.id == m.id %}
+                        <li>
+                             <a href="/catalog/{{m.alias}}/{{pc.alias}}/">
+                                 {% if pod_category.id == pc.id %}
+                                 <b>
+                                    {{pc.name}}
+                                 </b>
+                                 {% else %}
+                                    {{pc.name}}
+                                 {% endif %}
+                             </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% else %}
+            <ul class="podmenu">
+                {% for pc in pod_menu %}
+                    {% if pc.parent.id == m.id %}
+                        <li>
+                             <a href="/catalog/{{m.alias}}/{{pc.alias}}/">{{pc.name}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
       {% endfor %}
       </ul>
     </div>
+
     <div class="col-lg-9 col-sm-12 col-12 right-columns-items">
-      <div class="container-fluid">
-        <div class="row slider-category">
-              <div class="col-12">
-                  {% if pod_category %}
-                        {% if pod_category.img_front %}
-                            <img src="{{pod_category.img_front.url}}" alt="{{pod_category.name}}" />
-                        {% else %}
-                            <div class="white-block"> </div>
-                        {% endif %}
-                   {% else %}
-                        {% if category.img_front %}
-                            <img src="{{category.img_front.url}}" alt="{{category.name}}" />
-                        {% else %}
-                            <div class="white-block"> </div>
-                        {% endif %}
-                   {% endif %}
+      <div class="container-fluid kach">
+          <div class="row">
+              <div class="col-3">
+                  <img src="/static/image/ic-wooden-1.png" />
+                  <span>Собственное <br> производство</span>
               </div>
-                    {% if pod_category %}
-                        <h1 class="title-category">{{pod_category.name}}</h1>
-                   {% else %}
-                        <h1 class="title-category">{{category.name}}</h1>
-                   {% endif %}
+              <div class="col-3">
+                  <img src="/static/image/ic-money-1.png" />
+                  <span>Выгодные <br>цены</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-pr-1.png" />
+                  <span>Продукция всегда<br> на складе</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-check-1.png" />
+                  <span>Гарантия<br> 3 года</span>
+              </div>
           </div>
+          <!--<div class="col-lg-3 col-sm-6 col-12">
+              <select class="form-control">
+                <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По цене &#8593;</option>
+                <option value="desc" {% if 'desc' ==  order%}selected{% endif %}>По цене &#8595;</option>
+              </select>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-12">
+                Отображение {{first_pages}}–{{pages}} из {{ items.count }}
+              </div>
+              <div class="col-lg-6 col-sm-6 col-12 pagination">
+                  <div class="step-links">
+                      {% if pag.has_other_pages %}
+                      <ul class="pagination">
+                      {% if pag.has_previous %}
+                        <li class="arrow"><a href="{{url_s}}&page={{ pag.previous_page_number }}">&#8592;</a></li>
+                      {% endif %}
+                      {% if pag.number > 1 %}
+                          <li><a href="{{url_s}}&page=1">1</a></li>
+                          {% if doted_front %}
+                            <li>..</li>
+                          {% endif %}
+                      {% endif %}
+                      <li class="active"><span>{{pag.number}}<span class="sr-only">(current)</span></span></li>
+                      {% if pag.has_next %}
+                          {% if doted_end %}
+                            <li>..</li>
+                          {% endif %}
+                          {% if pag.number != pag.paginator.num_pages %}
+                               <li><a href="{{url_s}}&page={{pag.paginator.num_pages}}">{{pag.paginator.num_pages}}</a></li>
+                          {% endif %}
+                          <li class="arrow"><a href="{{url_s}}&page={{ pag.next_page_number }}">&#8594;</a></li>
+                      {% endif %}
+                      </ul>
+                  {% endif %}
+                  </div>
+              </div>-->
+        </div>
         <div class="row box">
            {% for item in pag%}
               <div class="col-lg-4 col-sm-6 col-12">

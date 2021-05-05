@@ -1,64 +1,156 @@
 {% extends '__base2.html' %} {% block content %}
 
-<div class="container">
+<div class="container-fluid base-work">
   <div class="row">
-    <div class="col-12 breadcrumbs">
-      <a href="/catalog/">Каталог</a> /
-      <a href="/catalog/{{item.cat_item.alias}}/ ">{{item.cat_item.name}}</a>
-      {% if item.pod_cat_item %}
-        / <a href="/catalog/{{item.cat_item.alias}}/{{item.pod_cat_item.alias}}/ ">{{item.pod_cat_item.name}}</a>
-      {% endif %}
-      / <a href="/product/{{item.alias}}/">{{item.name}}</a>
+    <div class="col-12">
+        <div class="container we-works">
+            <div class="row">
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/catalog/" title="Каталог" itemprop="item">
+                    <span itemprop="name">Каталог</span>
+                    <meta itemprop="position" content="0">
+                </a> <span>-</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/catalog/{{item.cat_item.alias}}/" title="{{item.cat_item.name}}" itemprop="item">
+                    <span itemprop="name">{{item.cat_item.name}}</span>
+                    <meta itemprop="position" content="1">
+                </a>
+            </li>
+            {% if item.pod_cat_item %}
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span>-</span>
+                 <a href="/catalog/{{item.cat_item.alias}}/{{item.pod_cat_item.alias}}/" title="{{item.pod_cat_item.name}}" itemprop="item">
+                    <span itemprop="name">{{item.pod_cat_item.name}}</span>
+                    <meta itemprop="position" content="2">
+                </a>
+            </li>
+            {% endif %}
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span>-</span>
+                    <span itemprop="name">{{item.name}}</span>
+                    <meta itemprop="position" content="3">
+            </li>
+        </ul>
+            </div>
+        </div>
     </div>
   </div>
+</div>
+<div class="container kategory-bo">
   <div class="row">
     <div class="col-lg-3 col-sm-12 col-12 left-columns-items">
-        <div class="parent-category">
-            <a href="/catalog/{{item.cat_item.alias}}/">
-                <div class="img-f-left"><img src="{{item.cat_item.ico.url}}" alt="{{item.cat_item.name}}"></div>
-                <div class="img-s-left">{{item.cat_item.name}}</div>
-            </a>
-        </div>
-        <ul>
-      {% for m in left_menu %}
+      <ul class="menu-cat">
+      {% for m in menu %}
         <li>
-            {% if m.id == item.pod_cat_item.id %}
-                <b><a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a></b>
+            <p>
+                <a href="/catalog/{{m.alias}}/"><img src="{{m.ico.url}}"> <span>{{m.name}}</span></a>
+                {% if pod_category.parent and pod_category.parent.id == m.id %}
+                    <span class="open-podmenu active">
+                        <img src="/static/image/ic-arrow-d.png" />
+                    </span>
+                {% else %}
+                    <span class="open-podmenu">
+                        <img src="/static/image/ic-arrow-1.png" />
+                    </span>
+                {% endif %}
+            </p>
+            {% if pod_category.parent and pod_category.parent.id == m.id %}
+            <ul class="podmenu active">
+                {% for pc in pod_menu %}
+                    {% if pc.parent.id == m.id %}
+                        <li>
+                             <a href="/catalog/{{m.alias}}/{{pc.alias}}/">
+                                 {% if pod_category.id == pc.id %}
+                                 <b>
+                                    {{pc.name}}
+                                 </b>
+                                 {% else %}
+                                    {{pc.name}}
+                                 {% endif %}
+                             </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             {% else %}
-                <a href="/catalog/{{m.parent.alias}}/{{m.alias}}/">{{m.name}}</a>
+            <ul class="podmenu">
+                {% for pc in pod_menu %}
+                    {% if pc.parent.id == m.id %}
+                        <li>
+                             <a href="/catalog/{{m.alias}}/{{pc.alias}}/">{{pc.name}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             {% endif %}
         </li>
       {% endfor %}
       </ul>
-        {% if cross %}
-        <div class="cross-in">
-            <div class="title-cross">
-                С ЭТИМ ТОВАРОМ ПОКУПАЮТ:
-                <div class="green-line"></div>
-            </div>
-            {% for item in cross.cross.all%}
-                <div class="cross-item">
-                    <a href="/product/{{item.alias}}/">
-                        <div class="left-cross">
-                            <p class="title-cross-p">{{item.name}}</p>
-                            <span class="price-cross">{{item.price|floatformat:'-3'}} {% if item.price_for_wt %} РУБ/шт {% else %} РУБ/м.п.{% endif %}</span>
-                        </div>
-                        <div class="right-cross">
-                            <img src="{{item.img_front.url}}" alt="{{item.name}}" />
-                        </div>
-                    </a>
-                </div>
-
-            {% endfor %}
-        </div>
-        {% endif %}
     </div>
     <div class="col-lg-9 col-sm-12 col-12 right-columns-items" itemscope itemtype="http://schema.org/Product">
+         <div class="container-fluid kach">
+          <div class="row">
+              <div class="col-3">
+                  <img src="/static/image/ic-wooden-1.png" />
+                  <span>Собственное <br> производство</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-money-1.png" />
+                  <span>Выгодные <br>цены</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-pr-1.png" />
+                  <span>Продукция всегда<br> на складе</span>
+              </div>
+              <div class="col-3">
+                  <img src="/static/image/ic-check-1.png" />
+                  <span>Гарантия<br> 3 года</span>
+              </div>
+          </div>
+          <!--<div class="col-lg-3 col-sm-6 col-12">
+              <select class="form-control">
+                <option value="asc" {% if 'asc' ==  order%}selected{% endif %}>По цене &#8593;</option>
+                <option value="desc" {% if 'desc' ==  order%}selected{% endif %}>По цене &#8595;</option>
+              </select>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-12">
+                Отображение {{first_pages}}–{{pages}} из {{ items.count }}
+              </div>
+              <div class="col-lg-6 col-sm-6 col-12 pagination">
+                  <div class="step-links">
+                      {% if pag.has_other_pages %}
+                      <ul class="pagination">
+                      {% if pag.has_previous %}
+                        <li class="arrow"><a href="{{url_s}}&page={{ pag.previous_page_number }}">&#8592;</a></li>
+                      {% endif %}
+                      {% if pag.number > 1 %}
+                          <li><a href="{{url_s}}&page=1">1</a></li>
+                          {% if doted_front %}
+                            <li>..</li>
+                          {% endif %}
+                      {% endif %}
+                      <li class="active"><span>{{pag.number}}<span class="sr-only">(current)</span></span></li>
+                      {% if pag.has_next %}
+                          {% if doted_end %}
+                            <li>..</li>
+                          {% endif %}
+                          {% if pag.number != pag.paginator.num_pages %}
+                               <li><a href="{{url_s}}&page={{pag.paginator.num_pages}}">{{pag.paginator.num_pages}}</a></li>
+                          {% endif %}
+                          <li class="arrow"><a href="{{url_s}}&page={{ pag.next_page_number }}">&#8594;</a></li>
+                      {% endif %}
+                      </ul>
+                  {% endif %}
+                  </div>
+              </div>-->
+        </div>
       <div class="container">
         <div class="row container-on-product">
           <div class="col-lg-6 col-sm-6 col-12 product-gallery">
               <div class="product-loopa">
-                  <a href="" class="loopa-product" data-fancybox="gallery"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                  <a href="" class="loopa-product" data-fancybox="gallery"><i class="fa fa-search" aria-hidden="true"></i></a>
               </div>
             <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
             {% for slider in sliders %}
@@ -70,27 +162,38 @@
             {% endfor %}
             </ul>
           </div>
-            <div class="col-lg-1 col-sm-1"></div>
-          <div class="col-lg-5 col-sm-5 col-12">
+          <div class="col-lg-6 col-sm-6 col-12">
             {% if data.seo_h1 %}
               <h1 class="title-product-in" itemprop="name">{{data.seo_h1}}</h1>
             {% else %}
               <h1 class="title-product-in" itemprop="name">{{data.name}}</h1>
             {% endif %}
-              {% if item.price %}
-                  <p class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                      <meta itemprop="priceCurrency" content="RUB" />
-                      <span itemprop="price">{{data.price|floatformat:'-3'}}</span> {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %}
-                       <link itemprop="availability" href="http://schema.org/InStock"/>
-                  </p>
-              {% endif %}
-              {% if item.price_kv %}
-                  <p class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                      <meta itemprop="priceCurrency" content="RUB" />
-                      <span itemprop="price">{{data.price_kv|floatformat:'-3'}}</span> р/кв.м.
-                       <link itemprop="availability" href="http://schema.org/InStock"/>
-                  </p>
-              {% endif %}
+                  <div class="blue-line"></div>
+              <div class="right-desc-product-in">
+                  {{data.des_right|safe}}
+              </div>
+              <div class="product-in-pr">
+                  {% if item.price %}
+                      <div class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                          <div class="pri-mp">
+                              <meta itemprop="priceCurrency" content="RUB" />
+                              <span itemprop="price">{{data.price|floatformat:'-3'}}</span> {% if item.price_for_wt %} р/шт {% else %} р/м.п. {% endif %}
+                               <link itemprop="availability" href="http://schema.org/InStock"/>
+                          </div>
+                    <div class="qty-mp"><button class="min-mp">-</button><input type="text" value="1" class="qty-mp-in" /><button class="plus-mp">+</button></div>
+                      </div>
+                  {% endif %}
+                  {% if item.price_kv %}
+                      <div class="price-product-in" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                          <div class="pri-kv">
+                              <meta itemprop="priceCurrency" content="RUB" />
+                              <span itemprop="price">{{data.price_kv|floatformat:'-3'}}</span> р/кв.м.
+                               <link itemprop="availability" href="http://schema.org/InStock"/>
+                          </div>
+                        <div class="qty-kv"><button class="min-kv">-</button><input type="text" value="1" class="qty-kv-in" /><button class="plus-kv">+</button></div>
+                      </div>
+                  {% endif %}
+              </div>
               <p>
                   <button class="btn btn-success product-in-cart" data-product="{{item.id}}" onclick="ym(73248691,'reachGoal','product_zakaz'); gtag('event', 'form', {'event_category':'submit', 'event_label': 'zakaz-tovar'});">ЗАКАЗАТЬ </button>
               </p>
@@ -102,17 +205,10 @@
                   {% endif %}
               </p>
           </div>
-            <div class="col-12">
-
-              <div class="right-desc-product-in">
-                  {{data.des_right|safe}}
-              </div>
-            </div>
         </div>
           {% if data.content %}
           <div class="row product-in-desc-bottom">
               <div class="col-12">
-                  <div class="op-in-product"><span>Описание</span>  <span class="ar-p-in">></span></div>
               </div>
               <div class="col-lg-1 col-sm-1"></div>
               <div class=" col-12 product-content-in">

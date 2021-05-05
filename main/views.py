@@ -59,7 +59,9 @@ def render_textpage(request, alias, object):
     context = dict(context, **banner)
     context = dict(context, **textpage_context)
     menu_obj = {'menu': CatItems.objects.all()}
+    pod_menu_obj = {'pod_menu': PodCatItems.objects.all()}
     context = dict(context, **menu_obj)
+    context = dict(context, **pod_menu_obj)
     try:
         template = loader.get_template("{}.html".format(alias))
         return context, template
